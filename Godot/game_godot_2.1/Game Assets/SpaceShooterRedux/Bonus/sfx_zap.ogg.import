@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_zap.ogg-a6f63aec7baccf03b0038fc2a3bf09ea.oggstr"
+
+[deps]
+
+source_file="res://Game Assets/SpaceShooterRedux/Bonus/sfx_zap.ogg"
+dest_files=[ "res://.import/sfx_zap.ogg-a6f63aec7baccf03b0038fc2a3bf09ea.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

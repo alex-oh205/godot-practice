@@ -1,0 +1,29 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/platformIndustrial_057.png-c693cc61b5f2dd00eec332f27b9c332c.stex"
+
+[deps]
+
+source_file="res://Godot101_Part_13/Part 13/art/platformIndustrial_057.png"
+dest_files=[ "res://.import/platformIndustrial_057.png-c693cc61b5f2dd00eec332f27b9c332c.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

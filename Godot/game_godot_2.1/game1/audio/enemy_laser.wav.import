@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/enemy_laser.wav-485f544f9c98eaa59c3a7de67c529eea.sample"
+
+[deps]
+
+source_file="res://game1/audio/enemy_laser.wav"
+dest_files=[ "res://.import/enemy_laser.wav-485f544f9c98eaa59c3a7de67c529eea.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,281 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://tanks/EnemyTankBig.gd" type="Script" id=1]
+[ext_resource path="res://bullets/EnemyBullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/onlyObjects_retina_rotated.png" type="Texture" id=3]
+[ext_resource path="res://effects/Smoke.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/UnitDisplay.tscn" type="PackedScene" id=5]
+[ext_resource path="res://effects/Explosion.tscn" type="PackedScene" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 60.521, 48.1881 )
+
+[sub_resource type="StreamTexture" id=4]
+
+flags = 0
+load_path = "res://.import/onlyObjects_retina_rotated.png-7b4ec6af5fd6d0816aed6e2c626ba9f1.stex"
+
+[sub_resource type="StreamTexture" id=5]
+
+flags = 0
+load_path = "res://.import/onlyObjects_retina_rotated.png-7b4ec6af5fd6d0816aed6e2c626ba9f1.stex"
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "init"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Turret/Flash:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Turret2/Flash:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+
+resource_name = "muzzle_flash"
+length = 0.15
+loop = false
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Turret/Flash:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.12, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Turret/Flash:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.03, 0.08 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+
+resource_name = "muzzle_flash2"
+length = 0.15
+loop = false
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Turret2/Flash:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.12, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Turret2/Flash:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.03, 0.08 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
+
+[node name="EnemyTankBig" type="KinematicBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 4
+collision_mask = 3
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
+Bullet = ExtResource( 2 )
+max_speed = 150
+rotation_speed = 0.0
+gun_cooldown = 0.5
+max_health = 50
+offroad_friction = 0.75
+gun_shots = 1
+gun_spread = 0.2
+max_ammo = 20
+ammo = -1
+turret_speed = 1.0
+detect_radius = 200
+
+[node name="Body" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 660, 438, 120, 104 )
+_sections_unfolded = [ "Region" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+visible = false
+shape = SubResource( 1 )
+
+[node name="Smoke" parent="." index="2" instance=ExtResource( 4 )]
+
+position = Vector2( -25, 0 )
+rotation = -3.14159
+emitting = false
+draw_order = 1
+
+[node name="Turret" type="Sprite" parent="." index="3"]
+
+position = Vector2( -24, -20 )
+texture = ExtResource( 3 )
+offset = Vector2( 20, 0 )
+region_enabled = true
+region_rect = Rect2( 199, 60, 72, 28 )
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+[node name="Muzzle" type="Position2D" parent="Turret" index="0"]
+
+position = Vector2( 65, 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Flash" type="Sprite" parent="Turret" index="1"]
+
+position = Vector2( 55, 3 )
+scale = Vector2( 0.5, 0.5 )
+z_index = 1
+texture = ExtResource( 3 )
+offset = Vector2( 23, 0 )
+region_enabled = true
+region_rect = Rect2( 644, 94, 50, 40 )
+_sections_unfolded = [ "Offset", "Region", "Transform", "Visibility", "Z Index" ]
+
+[node name="Turret2" type="Sprite" parent="." index="4"]
+
+position = Vector2( -24, 20 )
+texture = SubResource( 4 )
+offset = Vector2( 20, 0 )
+flip_v = true
+region_enabled = true
+region_rect = Rect2( 199, 60, 72, 28 )
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+[node name="Muzzle" type="Position2D" parent="Turret2" index="0"]
+
+position = Vector2( 65, -4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Flash" type="Sprite" parent="Turret2" index="1"]
+
+position = Vector2( 55, -3 )
+scale = Vector2( 0.5, 0.5 )
+z_index = 1
+texture = SubResource( 5 )
+offset = Vector2( 23, 0 )
+region_enabled = true
+region_rect = Rect2( 644, 94, 50, 40 )
+_sections_unfolded = [ "Offset", "Region", "Transform", "Visibility", "Z Index" ]
+
+[node name="DetectRadius" type="Area2D" parent="." index="5"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 0
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Material" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius" index="0"]
+
+[node name="LookAhead1" type="RayCast2D" parent="." index="6"]
+
+position = Vector2( 0, 30 )
+rotation = 0.174533
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 100, 0 )
+collision_mask = 7
+_sections_unfolded = [ "Transform" ]
+
+[node name="LookAhead2" type="RayCast2D" parent="." index="7"]
+
+position = Vector2( 0, -30 )
+rotation = -0.174533
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 100, 0 )
+collision_mask = 7
+_sections_unfolded = [ "Transform" ]
+
+[node name="UnitDisplay" parent="." index="8" instance=ExtResource( 5 )]
+
+[node name="GunTimer" type="Timer" parent="." index="9"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
+
+root_node = NodePath("..")
+autoplay = "init"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/init = SubResource( 2 )
+anims/muzzle_flash = SubResource( 3 )
+anims/muzzle_flash2 = SubResource( 6 )
+blend_times = [  ]
+
+[node name="Explosion" parent="." index="11" instance=ExtResource( 6 )]
+
+visible = false
+scale = Vector2( 1.5, 1.5 )
+frame = 4
+
+[connection signal="health_changed" from="." to="UnitDisplay" method="update_healthbar"]
+
+[connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered"]
+
+[connection signal="body_exited" from="DetectRadius" to="." method="_on_DetectRadius_body_exited"]
+
+[connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]
+
+[connection signal="animation_finished" from="Explosion" to="." method="_on_Explosion_animation_finished"]
+
+
